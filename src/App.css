@@ -48,31 +48,7 @@
     'h h'
     'n c'
   ;
-
 grid-template-rows: 60px 1fr;
 grid-template-columns: 2fr 10fr;
 grid-gap: 10px;
-
-}
-
-.header {
-  grid-area: h; 
-  background-color: rgb(126, 196, 94);
-}
-.header img{
-  height: 40px;
-}
-
-.nav {
-  grid-area: n;
-  background-color:rgb(228, 216, 110)
-}
-
-.content {
-  grid-area: c;
-  background-color:rgb(124, 152, 228)
-}
-
-.content img{
-  
 }
