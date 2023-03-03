@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-import Header from './Components/Header';
-import NavBar from './Components/NavBar';
-import Profile from './Components/Profile';
+import Header from './Components/Header/Header'
+import NavBar from './Components/Navbar/NavBar';
+import Profile from './Components/Profile/Profile';
 
 
 
