@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
+import Dialogs from './Components/Dialogs/Dialogs';
 import Header from './Components/Header/Header'
 import NavBar from './Components/Navbar/NavBar';
 import Profile from './Components/Profile/Profile';
@@ -12,9 +13,13 @@ let App = () => {
   return (
     <BrowserRouter>
       <div className='app_Wrapper'>
-       <Header/>
-      <NavBar/>
-       <Profile/>
+        <Header />
+        <NavBar />
+        <div className='app_Wrapper_content'>
+          <Dialogs />
+        </div>
+
+        {/* <Profile /> */}
       </div>
     </BrowserRouter>
   );

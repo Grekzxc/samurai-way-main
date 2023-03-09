@@ -44,11 +44,16 @@
 .app_Wrapper {
   display: grid;
   margin: 0 auto;
-  grid-template-areas: 
+  grid-template-areas:
     'h h'
     'n c'
   ;
-grid-template-rows: 60px 1fr;
-grid-template-columns: 2fr 10fr;
-grid-gap: 10px;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+}
+
+.app_Wrapper_content {
+  grid-area: c;
+  background-color: rgb(38, 52, 92)
 }
