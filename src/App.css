@@ -42,7 +42,7 @@
 } */
 
 .app_Wrapper {
-  color: rgb(73, 201, 201);
+  color: rgb(82, 228, 143);
   display: grid;
   margin: 0 auto;
   grid-template-areas:
@@ -56,5 +56,5 @@
 
 .app_Wrapper_content {
   grid-area: c;
-  background-color: rgb(38, 52, 92)
+  background-color: rgb(126, 150, 216)
 }
