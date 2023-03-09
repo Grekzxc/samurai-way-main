@@ -1,7 +1,13 @@
 import React from 'react'
 import s from './Posts.module.css'
 
-const Posts = (props: { message: string; }) => {
+
+type PostsType ={
+  message: string
+  likesCount: string
+}
+
+const Posts = (props: PostsType) => {
 
   return (
     <div>
@@ -9,7 +15,7 @@ const Posts = (props: { message: string; }) => {
         <img src="https://i.kinja-img.com/gawker-media/image/upload/t_original/ijsi5fzb1nbkbhxa2gc1.png" />
         {props.message}
         <div>
-          <span>Like</span>
+          <span>{props.likesCount}</span>
         </div>
       </div>
     </div>
