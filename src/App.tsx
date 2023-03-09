@@ -3,11 +3,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import Dialogs from './Components/Dialogs/Dialogs';
 import Header from './Components/Header/Header'
+import Music from './Components/Music/Music';
 import NavBar from './Components/Navbar/NavBar';
+import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
-
-
-
+import Settings from './Components/Settings/Settings';
 
 let App = () => {
   return (
@@ -16,10 +16,12 @@ let App = () => {
         <Header />
         <NavBar />
         <div className='app_Wrapper_content'>
-          <Dialogs />
+          <Route path={'/Dialogs'} component={Dialogs} />
+          <Route path={'/Profile'} component={Profile} />
+          <Route path={'/News'} component={News} />
+          <Route path={'/Music'} component={Music} />
+          <Route path={'/Settings'} component={Settings} />
         </div>
-
-        {/* <Profile /> */}
       </div>
     </BrowserRouter>
   );
