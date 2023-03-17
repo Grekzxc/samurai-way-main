@@ -1,7 +1,7 @@
 
 // 1 урок по типизации Социальной сети
 
-type MessageType ={
+type MessageType = {
     id: number
     message: string
 }
@@ -30,11 +30,13 @@ type RootStateType = {
 }
 
 
+
+
 let state: RootStateType = {
     profilePage: {
         posts: [
             { id: 1, message: 'hi,how are you', likesCount: 12 },
-            { id: 2, message: 'hi,how are you', likesCount: 12 },
+            { id: 2, message: 'hi,my friend, go like me', likesCount: 13 },
             { id: 3, message: 'hi,how are you', likesCount: 12 },
             { id: 4, message: 'hi,how are you', likesCount: 12 }
         ]
