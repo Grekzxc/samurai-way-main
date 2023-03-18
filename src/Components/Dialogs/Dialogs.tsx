@@ -1,29 +1,13 @@
-import { message } from 'antd';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import state from '../../redux/state';
+import { DialogItem } from './DialogItem/DialogItem';
 import s from './Dialogs.module.css'
+import Message from './Message/Message';
 
 type DialogItemType = {
     name: string
     id: number
 }
-type MessageType = {
-    message: string
-}
-export const DialogItem = (props: DialogItemType) => {
-    let path = '/dialogs/' + props.id
-    return (
-        <div className={s.item + ' ' + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-const Message = (props: MessageType) => {
-    return (
-        <div className={s.message}>{props.message}</div>
-    )
-}
+
 let dialogs = [
     { id: 1, name: 'Dimych' },
     { id: 2, name: 'Alex' },
