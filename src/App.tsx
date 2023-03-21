@@ -8,16 +8,26 @@ import NavBar from './Components/Navbar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
+import { RootStateType } from './redux/state';
 
-let App = () => {
+type PropsType = {
+  state: RootStateType
+}
+
+let App = (props: PropsType) => {
   return (
     <BrowserRouter>
       <div className='app_Wrapper'>
         <Header />
         <NavBar />
         <div className='app_Wrapper_content'>
-          <Route path={'/Dialogs'} component={Dialogs} />
-          <Route path={'/Profile'} component={Profile} />
+          <Route path={'/Dialogs'} render={() =>
+            <Dialogs
+              dialogs={props.state.dialogPage.dialogs}
+              messages={props.state.dialogPage.messages} />} />
+
+
+          <Route path={'/Profile'} render={() => <Profile posts={props.state.profilePage.posts} />} />
           <Route path={'/News'} component={News} />
           <Route path={'/Music'} component={Music} />
           <Route path={'/Settings'} component={Settings} />
@@ -28,8 +38,8 @@ let App = () => {
 }
 
 
-{/* <Route path={'/hello'} render = { ()=> <HelloMessage message={'hello friends'} /> } />    // 1 урок по типизауции
-      <Route path={'/bye'} render = { () => <ByeMessage message= {'bye friends'} /> }/> */}
+/* <Route path={'/hello'} render = { ()=> <HelloMessage message={'hello friends'} /> } />    // 1 урок по типизауции
+      <Route path={'/bye'} render = { () => <ByeMessage message= {'bye friends'} /> }/> */
 
 // type MessageType = {
 //   message: string

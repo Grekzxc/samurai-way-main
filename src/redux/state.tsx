@@ -1,36 +1,33 @@
 
 // 1 урок по типизации Социальной сети
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
 }
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
 }
 type SidebarType = {}
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogPage: DialogPageType
     sidebar: SidebarType
 }
-
-
-
 
 let state: RootStateType = {
     profilePage: {
