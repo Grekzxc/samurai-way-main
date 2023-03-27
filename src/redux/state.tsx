@@ -1,6 +1,8 @@
 
 // 1 урок по типизации Социальной сети
 
+import { rerenderEntireTree } from "../render"
+
 export type MessageType = {
     id: number
     message: string
@@ -29,6 +31,7 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+
 let state: RootStateType = {
     profilePage: {
         posts: [
@@ -53,6 +56,16 @@ let state: RootStateType = {
         ]
     },
     sidebar: {}
+}
+
+export const addPost = (postText: string) => {
+    const newPost: PostType = {
+        id: 5,
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 
 export default state;
