@@ -13,6 +13,8 @@ import { RootStateType } from './redux/state';
 type PropsType = {
   state: RootStateType
   addPost: (postText: string) => void
+  newPostText: string
+  updateNewPostText: (NewText: string) => void
 }
 
 let App = (props: PropsType) => {
@@ -31,6 +33,8 @@ let App = (props: PropsType) => {
             <Profile
               posts={props.state.profilePage.posts}
               addPost={props.addPost}
+              newPostText={props.newPostText}
+              updateNewPostText={props.updateNewPostText}
             />} />
 
 
@@ -44,20 +48,6 @@ let App = (props: PropsType) => {
 }
 
 
-/* <Route path={'/hello'} render = { ()=> <HelloMessage message={'hello friends'} /> } />    // 1 урок по типизауции
-      <Route path={'/bye'} render = { () => <ByeMessage message= {'bye friends'} /> }/> */
-
-// type MessageType = {
-//   message: string
-// }
-
-// function HelloMessage(props: MessageType){
-//   return <h1>{props.message}</h1>
-// }
-
-// const ByeMessage: React.FC<MessageType> = (props) => {
-//   return <h1>{props.message}</h1>
-// }
 
 
 export default App;

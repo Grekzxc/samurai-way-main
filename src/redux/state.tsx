@@ -1,7 +1,9 @@
 
 // 1 урок по типизации Социальной сети
 
-import { rerenderEntireTree } from "../render"
+import { rerenderEntireTree } from ".."
+
+// import { rerenderEntireTree } from "../render"
 
 export type MessageType = {
     id: number
@@ -18,6 +20,7 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 export type DialogPageType = {
     dialogs: Array<DialogsType>
@@ -39,7 +42,8 @@ let state: RootStateType = {
             { id: 2, message: 'hi,my friend, go like me', likesCount: 13 },
             { id: 3, message: 'hi,how are you', likesCount: 12 },
             { id: 4, message: 'hi,how are you', likesCount: 12 }
-        ]
+        ],
+        newPostText: ''
     },
     dialogPage: {
         dialogs: [
@@ -58,13 +62,19 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export const addPost = (postText: string) => {
+export const addPost = () => {
     const newPost: PostType = {
         id: 5,
-        message: postText,
+        message: state.profilePage.newPostText,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (NewText: string) => {
+    state.profilePage.newPostText = NewText
     rerenderEntireTree(state)
 }
 
