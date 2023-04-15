@@ -1,27 +1,25 @@
 import React from 'react';
-import state from './redux/state';
+import store, { RootStateType, StoreType } from './redux/state';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { addPost, RootStateType, updateNewPostText } from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
 
 
-export let rerenderEntireTree = (state: RootStateType) => {
-
+export let _callSubscriber = (store: StoreType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                state={state}
-                addPost={addPost}
-                newPostText={state.profilePage.newPostText}
-                updateNewPostText={updateNewPostText} />,
+                _state={store.getState()}
+                dispath={store.dispath.bind(store)}
+                newPostText={store._state.profilePage.newPostText}
+            />,
 
         </BrowserRouter>, document.getElementById('root')
     )
 };
+_callSubscriber(store)
 
+store.subscribe(_callSubscriber)
 
-
-
-rerenderEntireTree(state)
+// updateNewPostText={store.updateNewPostText.bind(store)}

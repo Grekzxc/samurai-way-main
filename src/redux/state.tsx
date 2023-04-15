@@ -1,9 +1,4 @@
-
-// 1 урок по типизации Социальной сети
-
-import { rerenderEntireTree } from ".."
-
-// import { rerenderEntireTree } from "../render"
+import { _callSubscriber } from ".."
 
 export type MessageType = {
     id: number
@@ -33,49 +28,79 @@ export type RootStateType = {
     dialogPage: DialogPageType
     sidebar: SidebarType
 }
+export type AddPostActionType = {
+    type: 'ADD_POST'
+    postText: string
+}
+export type ChangeNewTextActionType = {
+    type: 'UPDATE_NEW_POST_TEXT'
+    NewText: string
+}
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType
 
-
-let state: RootStateType = {
-    profilePage: {
-        posts: [
-            { id: 1, message: 'hi,how are you', likesCount: 12 },
-            { id: 2, message: 'hi,my friend, go like me', likesCount: 13 },
-            { id: 3, message: 'hi,how are you', likesCount: 12 },
-            { id: 4, message: 'hi,how are you', likesCount: 12 }
-        ],
-        newPostText: ''
-    },
-    dialogPage: {
-        dialogs: [
-            { id: 1, name: 'Dimych' },
-            { id: 2, name: 'Alex' },
-            { id: 3, name: 'Sveta' },
-            { id: 4, name: 'Kisa' }
-        ],
-        messages: [
-            { id: 1, message: 'hi' },
-            { id: 2, message: 'low' },
-            { id: 3, message: 'hight' },
-            { id: 4, message: 'bye' }
-        ]
-    },
-    sidebar: {}
+export type StoreType = {
+    _state: RootStateType
+    // addPost: (postText: string) => void
+    // updateNewPostText: (NewText: string) => void
+    _callSubscriber: (store: StoreType) => void
+    subscribe: (observer: any) => void
+    getState: () => RootStateType
+    dispath: (action: AddPostActionType | ChangeNewTextActionType) => void
 }
 
-export const addPost = () => {
-    const newPost: PostType = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0
+let store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                { id: 1, message: 'hi,how are you', likesCount: 12 },
+                { id: 2, message: 'hi,my friend, go like me', likesCount: 13 },
+                { id: 3, message: 'hi,how are you', likesCount: 12 },
+                { id: 4, message: 'hi,how are you', likesCount: 12 }
+            ],
+            newPostText: ''
+        },
+        dialogPage: {
+            dialogs: [
+                { id: 1, name: 'Dimych' },
+                { id: 2, name: 'Alex' },
+                { id: 3, name: 'Sveta' },
+                { id: 4, name: 'Kisa' }
+            ],
+            messages: [
+                { id: 1, message: 'hi' },
+                { id: 2, message: 'low' },
+                { id: 3, message: 'hight' },
+                { id: 4, message: 'bye' }
+            ]
+        },
+        sidebar: {}
+    },
+    getState() {
+        return this._state
+    },
+    _callSubscriber() {
+        console.log('state chenget');
+    },
+    subscribe(observer: any) {
+        this._callSubscriber = observer
+    },
+    dispath(action) {
+        if (action.type === 'ADD_POST') {
+            const newPost: PostType = {
+                id: 5,
+                message: action.postText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(store)
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+            this._state.profilePage.newPostText = action.NewText
+            this._callSubscriber(store)
+        }
     }
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
 }
 
-export const updateNewPostText = (NewText: string) => {
-    state.profilePage.newPostText = NewText
-    rerenderEntireTree(state)
-}
 
-export default state;
+
+export default store;

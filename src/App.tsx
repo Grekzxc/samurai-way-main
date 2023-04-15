@@ -8,13 +8,14 @@ import NavBar from './Components/Navbar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
-import { RootStateType } from './redux/state';
+import store, { ActionTypes, AddPostActionType, ChangeNewTextActionType, RootStateType, StoreType } from './redux/state';
 
 type PropsType = {
-  state: RootStateType
-  addPost: (postText: string) => void
+  _state: RootStateType
+  // addPost: (postText: string) => void
   newPostText: string
-  updateNewPostText: (NewText: string) => void
+  // updateNewPostText: (NewText: string) => void
+  dispath: (action: ActionTypes) => void
 }
 
 let App = (props: PropsType) => {
@@ -26,15 +27,15 @@ let App = (props: PropsType) => {
         <div className='app_Wrapper_content'>
           <Route path={'/Dialogs'} render={() =>
             <Dialogs
-              dialogs={props.state.dialogPage.dialogs}
-              messages={props.state.dialogPage.messages}
+              dialogs={store._state.dialogPage.dialogs}
+              messages={store._state.dialogPage.messages}
             />} />
           <Route path={'/Profile'} render={() =>
             <Profile
-              posts={props.state.profilePage.posts}
-              addPost={props.addPost}
-              newPostText={props.newPostText}
-              updateNewPostText={props.updateNewPostText}
+              posts={props._state.profilePage.posts}
+              dispath={store.dispath.bind(store)}
+              newPostText={props._state.profilePage.newPostText}
+            // updateNewPostText={props.updateNewPostText}
             />} />
 
 
