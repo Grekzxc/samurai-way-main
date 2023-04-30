@@ -36,12 +36,13 @@ export type ChangeNewTextActionType = {
     type: 'UPDATE_NEW_POST_TEXT'
     NewText: string
 }
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostAC>
+
+// export type AddPostActionTypes = ReturnType<typeof addPostAC>
+// export type ChangeNewTextActionTypes = ReturnType<typeof updateNewPostAC>
 
 export type StoreType = {
     _state: RootStateType
-    // addPost: (postText: string) => void
-    // updateNewPostText: (NewText: string) => void
     _callSubscriber: (store: StoreType) => void
     subscribe: (observer: any) => void
     getState: () => RootStateType
@@ -100,7 +101,18 @@ let store: StoreType = {
         }
     }
 }
-
+export const addPostAC = (postText: string) => {
+    return {
+        type: 'ADD_POST',
+        postText: postText
+    } as const
+}
+export const updateNewPostAC = (NewText: string) => {
+    return {
+        type: 'UPDATE_NEW_POST_TEXT',
+        NewText: NewText
+    } as const
+}
 
 
 export default store;

@@ -12,9 +12,7 @@ import store, { ActionTypes, AddPostActionType, ChangeNewTextActionType, RootSta
 
 type PropsType = {
   _state: RootStateType
-  // addPost: (postText: string) => void
   newPostText: string
-  // updateNewPostText: (NewText: string) => void
   dispath: (action: ActionTypes) => void
 }
 
@@ -35,7 +33,6 @@ let App = (props: PropsType) => {
               posts={props._state.profilePage.posts}
               dispath={store.dispath.bind(store)}
               newPostText={props._state.profilePage.newPostText}
-            // updateNewPostText={props.updateNewPostText}
             />} />
 
 

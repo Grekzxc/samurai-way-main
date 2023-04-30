@@ -6,10 +6,8 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 import { log } from 'console'
 
 type PropsType = {
-  // addPost: (postText: string) => void
   posts: PostType[]
   newPostText: string
-  // updateNewPostText: (NewText: string) => void
   dispath: (action: any) => void
 }
 function Profile(props: PropsType) {
@@ -20,8 +18,6 @@ function Profile(props: PropsType) {
         posts={props.posts}
         newPostText={props.newPostText}
         dispath={props.dispath}
-      // addPost={props.addPost}
-      // updateNewPostText={props.updateNewPostText}
       />
     </div>
   )

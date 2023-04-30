@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActionTypes, ChangeNewTextActionType, PostType } from '../../../redux/state'
+import { ActionTypes, AddPostActionType, ChangeNewTextActionType, PostType, addPostAC, updateNewPostAC } from '../../../redux/state'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
 import { log } from 'console'
@@ -17,12 +17,11 @@ const MyPosts = (props: PropsType) => {
   const newPostElement = React.createRef<HTMLTextAreaElement>()
 
   const onAddPostHandler = () => {
-    props.dispath({ type: 'ADD_POST', postText: props.newPostText })
+    props.dispath(addPostAC(props.newPostText))
   }
   const onPostChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-
     const text: string = e.currentTarget.value
-    let action = ({ type: 'UPDATE_NEW_POST_TEXT', NewText: text } as ChangeNewTextActionType)
+    let action = updateNewPostAC(text)
     props.dispath(action)
   }
 
