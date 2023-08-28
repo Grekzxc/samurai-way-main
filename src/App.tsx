@@ -8,12 +8,13 @@ import NavBar from './Components/Navbar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
-import store, { ActionTypes, AddPostActionType, ChangeNewTextActionType, RootStateType, StoreType } from './redux/state';
+import store, { ActionTypes, RootStateType, StoreType } from './redux/state';
 
 type PropsType = {
-  _state: RootStateType
   newPostText: string
+  state: RootStateType
   dispath: (action: ActionTypes) => void
+  //store: StoreType
 }
 
 let App = (props: PropsType) => {
@@ -25,14 +26,17 @@ let App = (props: PropsType) => {
         <div className='app_Wrapper_content'>
           <Route path={'/Dialogs'} render={() =>
             <Dialogs
-              dialogs={store._state.dialogPage.dialogs}
-              messages={store._state.dialogPage.messages}
+              dispatch={props.dispath}
+              dialogs={props.state.dialogPage.dialogs}
+              messages={props.state.dialogPage.messages}
+              state={props.state}
+
             />} />
           <Route path={'/Profile'} render={() =>
             <Profile
-              posts={props._state.profilePage.posts}
+              posts={props.state.profilePage.posts}
               dispath={store.dispath.bind(store)}
-              newPostText={props._state.profilePage.newPostText}
+              newPostText={props.state.profilePage.newPostText}
             />} />
 
 

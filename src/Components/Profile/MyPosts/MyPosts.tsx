@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActionTypes, AddPostActionType, ChangeNewTextActionType, PostType, addPostAC, updateNewPostAC } from '../../../redux/state'
+import { ActionTypes, PostType, addPostAC, updateNewPostAC } from '../../../redux/state'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
 import { log } from 'console'
