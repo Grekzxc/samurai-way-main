@@ -1,25 +1,30 @@
 import React from 'react';
-import store, { ActionTypes, RootStateType, StoreType } from './redux/state';
+import store from './redux/redux_store';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { RootStateType, StoreType } from './redux/store';
 
-export let _callSubscriber = (store: StoreType) => {
+export let _callSubscriber = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                //store={store}
-                state={store.getState()}
-                dispath={store.dispath.bind(store)}
-                newPostText={store._state.profilePage.newPostText}
+                store={store}
+                dispatch={store.dispatch.bind(store)}
+
             />,
 
         </BrowserRouter>, document.getElementById('root')
     )
 };
-_callSubscriber(store)
+_callSubscriber(store.getState())
 
-store.subscribe(_callSubscriber)
+store.subscribe(() => {
+    let state = store.getState()
+    _callSubscriber(state)
+})
+
+export type StoreType1 = typeof store
 
 // updateNewPostText={store.updateNewPostText.bind(store)}

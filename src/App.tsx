@@ -8,16 +8,16 @@ import NavBar from './Components/Navbar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
-import store, { ActionTypes, RootStateType, StoreType } from './redux/state';
+import store, { ActionTypes, RootStateType, StoreType } from './redux/store';
+import { StoreType1 } from '.';
 
 type PropsType = {
-  newPostText: string
-  state: RootStateType
-  dispath: (action: ActionTypes) => void
-  //store: StoreType
+  store: StoreType1
+  dispatch: (action: ActionTypes) => void
 }
 
 let App = (props: PropsType) => {
+  const state = props.store.getState()
   return (
     <BrowserRouter>
       <div className='app_Wrapper'>
@@ -26,17 +26,17 @@ let App = (props: PropsType) => {
         <div className='app_Wrapper_content'>
           <Route path={'/Dialogs'} render={() =>
             <Dialogs
-              dispatch={props.dispath}
-              dialogs={props.state.dialogPage.dialogs}
-              messages={props.state.dialogPage.messages}
-              state={props.state}
+              newMessageBody={state.dialogPage.newMessageBody}
+              dispatch={props.dispatch}
+              dialogs={state.dialogPage.dialogs}
+              messages={state.dialogPage.messages}
 
             />} />
           <Route path={'/Profile'} render={() =>
             <Profile
-              posts={props.state.profilePage.posts}
-              dispath={store.dispath.bind(store)}
-              newPostText={props.state.profilePage.newPostText}
+              posts={state.profilePage.posts}
+              dispatch={props.dispatch}
+              newPostText={state.profilePage.newPostText}
             />} />
 
 
@@ -48,8 +48,5 @@ let App = (props: PropsType) => {
     </BrowserRouter>
   );
 }
-
-
-
 
 export default App;
